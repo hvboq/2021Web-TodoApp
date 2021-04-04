@@ -1,0 +1,16 @@
+.TodoList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.TodoItem{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    color: black;
+    border: lightcoral 1px solid;
+    width: 400px;
+    margin: 10px;
+}
