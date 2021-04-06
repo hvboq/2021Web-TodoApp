@@ -3,19 +3,25 @@ import {MdAdd} from 'react-icons/md';
 import '../index';
 
 const TodoInsert = (props) => {
-    
+    const { todoRef, setter, value } = props;
     const [inputText, setText] = useState('');
     const onChange = (e) => {
         setText(e.target.value);
     }
     const insertTodoList = () => {
-        props.setter([
-            ...props.value,
+        if (inputText.trim().length <= 0) {
+            return;
+        }
+
+        setter([
+            ...value,
             {
-                id : props.value.length+1,
-                content : inputText
-            }
+                id: todoRef.current++,
+                content : inputText,
+            },
         ]);
+
+        setText('');
     }
     return(
         <div className='TodoInsert'>

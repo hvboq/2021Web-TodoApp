@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaMinus } from "react-icons/fa";
 import "./TodoListItem.scss"
 
 const TodoListItem = (props) => {
-  const [delIdx, setIdx] = useState(0);
-  const removeItem = (e) => {
-    setIdx(e.target.value);
-    console.log(delIdx);
-    props.setter(
-      props.value.filter(item => {
-        return item.id != delIdx
-      })
+  const { setter, value } = props;
+  const removeItem = (idx) => {
+    setter(
+      value.filter(item => item.id !== idx)
     );
   }
   return (
     <div className="TodoList">
-      {props.value.map(item => { return (
-        <div className='TodoItem' >
+      {props.value.map(item => {
+      const { id, content } = item;
+      
+      return (
+        <div className='TodoItem' key={id}>
         <p>{item.content}</p>
-        <button type="submit" value={item.id} onClick={removeItem}>
+        <button type="submit" value={item.id} onClick={() => removeItem(id)}>
           <FaMinus />
         </button>
       </div>
